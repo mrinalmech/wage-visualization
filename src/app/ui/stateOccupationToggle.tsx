@@ -1,21 +1,25 @@
 "use client";
 
-import { useState } from "react";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
-type VisualizationType = "state" | "occupation";
+import { VisualizationType } from "@/interfaces";
 
-export default function StateOccupationToggle() {
-  const [visualizationType, setVisualizationType] =
-    useState<VisualizationType | null>("state");
+interface Props {
+  visualizationType: VisualizationType;
+  onVisualizationTypeChange: (newVisualizationType: VisualizationType) => void;
+}
 
+export default function StateOccupationToggle({
+  onVisualizationTypeChange,
+  visualizationType,
+}: Props) {
   const handleVisualizationType = (
     {},
     newVisualizationType: VisualizationType | null
   ) => {
     if (newVisualizationType !== null) {
-      setVisualizationType(newVisualizationType);
+      onVisualizationTypeChange(newVisualizationType);
     }
   };
 
@@ -27,10 +31,18 @@ export default function StateOccupationToggle() {
         onChange={handleVisualizationType}
         aria-label="visualization type"
       >
-        <ToggleButton value="state" aria-label="state">
+        <ToggleButton
+          value="state"
+          aria-label="state"
+          classes={{ root: "normal-case" }}
+        >
           State
         </ToggleButton>
-        <ToggleButton value="occupation" aria-label="occupation">
+        <ToggleButton
+          value="occupation"
+          aria-label="occupation"
+          classes={{ root: "normal-case" }}
+        >
           Occupation
         </ToggleButton>
       </ToggleButtonGroup>
