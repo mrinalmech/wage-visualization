@@ -14,7 +14,9 @@ export default function StateOccupationToggle() {
     {},
     newVisualizationType: VisualizationType | null
   ) => {
-    setVisualizationType(newVisualizationType);
+    if (newVisualizationType !== null) {
+      setVisualizationType(newVisualizationType);
+    }
   };
 
   return (
