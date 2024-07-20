@@ -33,7 +33,7 @@ export default function WageVisualization() {
           />
           <Divider className="mt-4" />
           <div className="flex">
-            <GraphControls />
+            <GraphControls visualizationType={visualizationType} />
             <Graph />
           </div>
         </Card>
