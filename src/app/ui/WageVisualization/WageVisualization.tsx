@@ -29,7 +29,7 @@ export default function WageVisualization({ states, occupations }: Props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="container mx-auto mt-10 max-w-5xl px-4">
+      <div className="container mx-auto mt-10 max-w-7xl px-4">
         <Card variant="outlined" className="pt-4">
           <h1 className="text-xl text-center">Wage Visualization</h1>
           <StateOccupationToggle
