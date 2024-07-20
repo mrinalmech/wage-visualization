@@ -24,14 +24,17 @@ export default function WageVisualization() {
   return (
     <ThemeProvider theme={theme}>
       <div className="container mx-auto mt-10 max-w-5xl px-4">
-        <Card variant="outlined" className="py-6">
+        <Card variant="outlined" className="pt-4">
           <h1 className="text-xl text-center">Wage Visualization</h1>
           <StateOccupationToggle
             visualizationType={visualizationType}
             onVisualizationTypeChange={onVisualizationTypeChange}
           />
-          <Divider className="my-4" />
-          <GraphControls />
+          <Divider className="mt-4" />
+          <div className="flex">
+            <GraphControls />
+            sss
+          </div>
         </Card>
       </div>
     </ThemeProvider>
