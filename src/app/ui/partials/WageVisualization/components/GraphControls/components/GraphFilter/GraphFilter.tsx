@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import GraphFilterDropdown from "./ui/GraphFilterDropdown";
-import GraphFilterCheckboxes from "./ui/GraphFilterCheckboxes";
-import GraphFilterSearch from "./ui/GraphFilterSearch";
+import GraphFilterDropdown from "./components/GraphFilterDropdown";
+import GraphFilterCheckboxes from "./components/GraphFilterCheckboxes";
+import GraphFilterSearch from "./components/GraphFilterSearch";
 
 import { VisualizationType } from "@/interfaces";
 

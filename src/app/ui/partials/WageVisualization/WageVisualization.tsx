@@ -8,9 +8,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import { VisualizationType } from "@/interfaces";
 import { theme } from "@/styles/materialTheme";
 
-import GraphControls from "../GraphControls";
-import Graph from "./ui/Graph";
-import StateOccupationToggle from "./ui/StateOccupationToggle";
+import GraphControls from "./components/GraphControls";
+import Graph from "./components/Graph";
+import StateOccupationToggle from "./components/StateOccupationToggle";
 
 interface Props {
   states: string[];

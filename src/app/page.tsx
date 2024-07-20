@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 
 import { WageObject } from "@/interfaces";
 
-import WageVisualization from "./ui/WageVisualization";
+import WageVisualization from "./ui/partials/WageVisualization";
 
 export default async function Home() {
   const file = await fs.readFile(
