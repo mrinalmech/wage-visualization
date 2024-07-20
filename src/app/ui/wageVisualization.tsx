@@ -6,10 +6,10 @@ import Divider from "@mui/material/Divider";
 import { ThemeProvider } from "@mui/material/styles";
 
 import { VisualizationType } from "@/interfaces";
+import { theme } from "@/styles/materialTheme";
 
-import StateOccupationToggle from "./stateOccupationToggle";
-
-import { theme } from "../../styles/materialTheme";
+import GraphControls from "./GraphControls";
+import StateOccupationToggle from "./StateOccupationToggle";
 
 export default function WageVisualization() {
   const [visualizationType, setVisualizationType] =
@@ -31,6 +31,7 @@ export default function WageVisualization() {
             onVisualizationTypeChange={onVisualizationTypeChange}
           />
           <Divider className="my-4" />
+          <GraphControls />
         </Card>
       </div>
     </ThemeProvider>

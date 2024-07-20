@@ -1,6 +1,6 @@
 import { promises as fs } from "fs";
 
-import WageVisualization from "./ui/wageVisualization";
+import WageVisualization from "./ui/WageVisualization";
 
 export default async function Home() {
   const file = await fs.readFile(
