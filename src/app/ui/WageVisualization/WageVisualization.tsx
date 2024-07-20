@@ -9,8 +9,8 @@ import { VisualizationType } from "@/interfaces";
 import { theme } from "@/styles/materialTheme";
 
 import GraphControls from "../GraphControls";
-import Graph from "../Graph";
-import StateOccupationToggle from "../StateOccupationToggle";
+import Graph from "./ui/Graph";
+import StateOccupationToggle from "./ui/StateOccupationToggle";
 
 interface Props {
   states: string[];
