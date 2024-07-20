@@ -9,26 +9,32 @@ interface Props {
   visualizationType: VisualizationType;
   states: string[];
   occupations: string[];
+  search: string;
 }
 
 export default function GraphFilterCheckboxes({
   visualizationType,
   states,
   occupations,
+  search,
 }: Props) {
   const stateCheckboxes = useMemo(
     () =>
-      states.map((c) => (
-        <FormControlLabel key={c} control={<Checkbox />} label={c} />
-      )),
-    [states]
+      states
+        .filter((s) => s.includes(search))
+        .map((s) => (
+          <FormControlLabel key={s} control={<Checkbox />} label={s} />
+        )),
+    [states, search]
   );
   const occupationCheckboxes = useMemo(
     () =>
-      occupations.map((c) => (
-        <FormControlLabel key={c} control={<Checkbox />} label={c} />
-      )),
-    [occupations]
+      occupations
+        .filter((o) => o.includes(search))
+        .map((o) => (
+          <FormControlLabel key={o} control={<Checkbox />} label={o} />
+        )),
+    [occupations, search]
   );
 
   const checkboxes =

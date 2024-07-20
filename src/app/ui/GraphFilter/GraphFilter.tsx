@@ -1,7 +1,10 @@
-import { VisualizationType } from "@/interfaces";
+import { useState } from "react";
 
 import GraphFilterDropdown from "../GraphFilterDropdown";
-import GraphFilterCheckboxes from "../GraphFilterCheckboxes/GraphFilterCheckboxes";
+import GraphFilterCheckboxes from "../GraphFilterCheckboxes";
+import GraphFilterSearch from "../GraphFilterSearch";
+
+import { VisualizationType } from "@/interfaces";
 
 interface Props {
   visualizationType: VisualizationType;
@@ -14,6 +17,12 @@ export default function GraphFilter({
   states,
   occupations,
 }: Props) {
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (newSearch: string) => {
+    setSearch(newSearch);
+  };
+
   return (
     <div className="p-4">
       <GraphFilterDropdown
@@ -21,10 +30,15 @@ export default function GraphFilter({
         states={states}
         occupations={occupations}
       />
+      <GraphFilterSearch
+        visualizationType={visualizationType}
+        onSearch={handleSearch}
+      />
       <GraphFilterCheckboxes
         visualizationType={visualizationType}
         states={states}
         occupations={occupations}
+        search={search}
       />
     </div>
   );
