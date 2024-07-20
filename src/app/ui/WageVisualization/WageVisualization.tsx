@@ -8,8 +8,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import { VisualizationType } from "@/interfaces";
 import { theme } from "@/styles/materialTheme";
 
-import GraphControls from "./GraphControls";
-import StateOccupationToggle from "./StateOccupationToggle";
+import GraphControls from "../GraphControls";
+import Graph from "../Graph";
+import StateOccupationToggle from "../StateOccupationToggle";
 
 export default function WageVisualization() {
   const [visualizationType, setVisualizationType] =
@@ -33,7 +34,7 @@ export default function WageVisualization() {
           <Divider className="mt-4" />
           <div className="flex">
             <GraphControls />
-            sss
+            <Graph />
           </div>
         </Card>
       </div>
