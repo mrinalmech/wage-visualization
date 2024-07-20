@@ -29,15 +29,15 @@ export default function WageVisualization({ states, occupations }: Props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="container mx-auto mt-10 max-w-7xl px-4">
-        <Card variant="outlined" className="pt-4">
+      <div className="container mx-auto max-w-10xl px-4 py-10 h-screen">
+        <Card variant="outlined" className="pt-4 h-full flex flex-col">
           <h1 className="text-xl text-center">Wage Visualization</h1>
           <StateOccupationToggle
             visualizationType={visualizationType}
             onVisualizationTypeChange={onVisualizationTypeChange}
           />
-          <Divider className="mt-4" />
-          <div className="flex">
+          <Divider className="!mt-4" />
+          <div className="flex flex-1">
             <GraphControls
               visualizationType={visualizationType}
               states={states}

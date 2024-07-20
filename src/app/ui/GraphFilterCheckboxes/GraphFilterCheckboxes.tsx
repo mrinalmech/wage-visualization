@@ -41,7 +41,7 @@ export default function GraphFilterCheckboxes({
     visualizationType === "state" ? stateCheckboxes : occupationCheckboxes;
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 flex-1">
       <FormGroup>{checkboxes}</FormGroup>
     </div>
   );

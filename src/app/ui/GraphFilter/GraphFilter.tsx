@@ -24,7 +24,7 @@ export default function GraphFilter({
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 flex-1 flex flex-col">
       <GraphFilterDropdown
         visualizationType={visualizationType}
         states={states}

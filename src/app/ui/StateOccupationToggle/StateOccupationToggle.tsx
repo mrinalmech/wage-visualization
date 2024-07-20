@@ -32,14 +32,14 @@ export default function StateOccupationToggle({
         <ToggleButton
           value="state"
           aria-label="state"
-          classes={{ root: "!normal-case" }}
+          classes={{ root: "!normal-case w-28" }}
         >
           State
         </ToggleButton>
         <ToggleButton
           value="occupation"
           aria-label="occupation"
-          classes={{ root: "!normal-case" }}
+          classes={{ root: "!normal-case w-28" }}
         >
           Occupation
         </ToggleButton>

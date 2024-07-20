@@ -17,7 +17,7 @@ export default function GraphControls({
   occupations,
 }: Props) {
   return (
-    <div className="border-r border-slate-200 w-80">
+    <div className="border-r border-slate-200 w-80 flex flex-col">
       <WageTypeSelector />
       <Divider />
       <GraphFilter
