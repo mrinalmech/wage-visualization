@@ -1,15 +1,25 @@
 import { VisualizationType } from "@/interfaces";
 
+import GraphFilterDropdown from "../GraphFilterDropdown";
+
 interface Props {
   visualizationType: VisualizationType;
+  states: string[];
+  occupations: string[];
 }
 
-export default function GraphFilter({ visualizationType }: Props) {
-  const title = visualizationType === "state" ? "States" : "Occupations";
-
+export default function GraphFilter({
+  visualizationType,
+  states,
+  occupations,
+}: Props) {
   return (
     <div className="p-4">
-      <h2 className="text-lg text-center">{title}</h2>
+      <GraphFilterDropdown
+        visualizationType={visualizationType}
+        states={states}
+        occupations={occupations}
+      />
     </div>
   );
 }

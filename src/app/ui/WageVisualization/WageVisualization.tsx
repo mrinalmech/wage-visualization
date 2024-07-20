@@ -12,7 +12,12 @@ import GraphControls from "../GraphControls";
 import Graph from "../Graph";
 import StateOccupationToggle from "../StateOccupationToggle";
 
-export default function WageVisualization() {
+interface Props {
+  states: string[];
+  occupations: string[];
+}
+
+export default function WageVisualization({ states, occupations }: Props) {
   const [visualizationType, setVisualizationType] =
     useState<VisualizationType>("state");
 
@@ -33,7 +38,11 @@ export default function WageVisualization() {
           />
           <Divider className="mt-4" />
           <div className="flex">
-            <GraphControls visualizationType={visualizationType} />
+            <GraphControls
+              visualizationType={visualizationType}
+              states={states}
+              occupations={occupations}
+            />
             <Graph />
           </div>
         </Card>
