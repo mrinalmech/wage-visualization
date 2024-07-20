@@ -2,8 +2,8 @@ import { Divider } from "@mui/material";
 
 import { VisualizationType } from "@/interfaces";
 
-import WageTypeSelector from "../WageTypeSelector";
-import GraphFilter from "../GraphFilter";
+import WageTypeSelector from "./components/WageTypeSelector";
+import GraphFilter from "./components/GraphFilter";
 
 interface Props {
   visualizationType: VisualizationType;
