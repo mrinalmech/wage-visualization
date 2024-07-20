@@ -31,11 +31,13 @@ export default function GraphFilterDropdown({
     visualizationType === "state" ? occupationOptions : stateOptions;
 
   return (
-    <Autocomplete
-      disablePortal
-      id="filter-dropdown"
-      options={options}
-      renderInput={(params) => <TextField {...params} label={label} />}
-    />
+    <div className="px-4 pt-4">
+      <Autocomplete
+        disablePortal
+        id="filter-dropdown"
+        options={options}
+        renderInput={(params) => <TextField {...params} label={label} />}
+      />
+    </div>
   );
 }

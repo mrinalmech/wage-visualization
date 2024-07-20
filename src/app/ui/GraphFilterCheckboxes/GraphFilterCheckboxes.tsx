@@ -4,6 +4,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
 import { VisualizationType } from "@/interfaces";
+import { Divider } from "@mui/material";
 
 interface Props {
   visualizationType: VisualizationType;
@@ -41,8 +42,11 @@ export default function GraphFilterCheckboxes({
     visualizationType === "state" ? stateCheckboxes : occupationCheckboxes;
 
   return (
-    <div className="mt-4 flex-1">
-      <FormGroup>{checkboxes}</FormGroup>
+    <div className="mt-4">
+      <Divider />
+      <div className="pl-4 h-96 overflow-y-scroll">
+        <FormGroup>{checkboxes}</FormGroup>
+      </div>
     </div>
   );
 }
