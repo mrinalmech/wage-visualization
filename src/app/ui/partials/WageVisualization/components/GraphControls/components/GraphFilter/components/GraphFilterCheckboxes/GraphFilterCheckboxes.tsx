@@ -24,7 +24,12 @@ export default function GraphFilterCheckboxes({
       states
         .filter((s) => s.includes(search))
         .map((s) => (
-          <FormControlLabel key={s} control={<Checkbox />} label={s} />
+          <FormControlLabel
+            key={s}
+            control={<Checkbox />}
+            label={s}
+            classes={{ root: "mb-1 last:mb-0" }}
+          />
         )),
     [states, search]
   );
@@ -33,7 +38,12 @@ export default function GraphFilterCheckboxes({
       occupations
         .filter((o) => o.includes(search))
         .map((o) => (
-          <FormControlLabel key={o} control={<Checkbox />} label={o} />
+          <FormControlLabel
+            key={o}
+            control={<Checkbox />}
+            label={o}
+            classes={{ root: "mb-1 last:mb-0" }}
+          />
         )),
     [occupations, search]
   );
