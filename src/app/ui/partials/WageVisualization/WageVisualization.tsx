@@ -61,8 +61,6 @@ export default function WageVisualization({ states, occupations }: Props) {
     setSelectedState(null);
   };
 
-  console.log(selection);
-
   return (
     <ThemeProvider theme={theme}>
       <div className="container mx-auto max-w-10xl px-4">
