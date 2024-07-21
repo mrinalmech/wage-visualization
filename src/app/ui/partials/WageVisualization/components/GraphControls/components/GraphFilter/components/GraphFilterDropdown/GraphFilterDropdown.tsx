@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { SyntheticEvent, useMemo } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
@@ -8,12 +8,16 @@ interface Props {
   visualizationType: VisualizationType;
   states: string[];
   occupations: string[];
+  selection: string | null;
+  onSelectionChange: (selection: string) => void;
 }
 
 export default function GraphFilterDropdown({
   visualizationType,
   states,
   occupations,
+  selection,
+  onSelectionChange,
 }: Props) {
   const label = visualizationType === "state" ? "Occupation" : "State";
 
@@ -30,6 +34,14 @@ export default function GraphFilterDropdown({
   const options =
     visualizationType === "state" ? occupationOptions : stateOptions;
 
+  const handleChange = (e: SyntheticEvent, value: { label: string } | null) => {
+    if (value) {
+      onSelectionChange(value.label);
+    }
+  };
+
+  const value = selection !== null ? { label: selection } : null;
+
   return (
     <div className="px-4 pt-4">
       <Autocomplete
@@ -37,6 +49,9 @@ export default function GraphFilterDropdown({
         id="filter-dropdown"
         options={options}
         renderInput={(params) => <TextField {...params} label={label} />}
+        onChange={handleChange}
+        value={value}
+        isOptionEqualToValue={(o, v) => o.label === v.label}
       />
     </div>
   );

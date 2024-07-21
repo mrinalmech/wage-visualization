@@ -10,12 +10,16 @@ interface Props {
   visualizationType: VisualizationType;
   states: string[];
   occupations: string[];
+  selection: string | null;
+  onSelectionChange: (selection: string) => void;
 }
 
 export default function GraphFilter({
   visualizationType,
   states,
   occupations,
+  selection,
+  onSelectionChange,
 }: Props) {
   const [search, setSearch] = useState("");
 
@@ -29,6 +33,8 @@ export default function GraphFilter({
         visualizationType={visualizationType}
         states={states}
         occupations={occupations}
+        selection={selection}
+        onSelectionChange={onSelectionChange}
       />
       <GraphFilterSearch
         visualizationType={visualizationType}

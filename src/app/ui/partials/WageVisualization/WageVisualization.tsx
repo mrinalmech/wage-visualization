@@ -21,11 +21,7 @@ export default function WageVisualization({ states, occupations }: Props) {
   const [visualizationType, setVisualizationType] =
     useState<VisualizationType>("state");
 
-  const onVisualizationTypeChange = (
-    newVisualizationType: VisualizationType
-  ) => {
-    setVisualizationType(newVisualizationType);
-  };
+  const isVisualizationTypeState = visualizationType === "state";
 
   const [wageTypes, setWageTypes] = useState<WageTypes>({
     nominal: true,
@@ -33,21 +29,48 @@ export default function WageVisualization({ states, occupations }: Props) {
     cpi: false,
   });
 
-  const onWageTypesChange = (name: WageType, checked: boolean) => {
+  const handleWageTypesChange = (name: WageType, checked: boolean) => {
     setWageTypes({
       ...wageTypes,
       [name]: checked,
     });
   };
 
+  const [selectedState, setSelectedState] = useState<string | null>(null);
+  const [selectedOccupation, setSelectedOccupation] = useState<string | null>(
+    null
+  );
+
+  const selection = isVisualizationTypeState
+    ? selectedState
+    : selectedOccupation;
+
+  const handleSelectionChange = (selection: string) => {
+    if (isVisualizationTypeState) {
+      setSelectedState(selection);
+    } else {
+      setSelectedOccupation(selection);
+    }
+  };
+
+  const handleVisualizationTypeChange = (
+    newVisualizationType: VisualizationType
+  ) => {
+    setVisualizationType(newVisualizationType);
+    setSelectedOccupation(null);
+    setSelectedState(null);
+  };
+
+  console.log(selection);
+
   return (
     <ThemeProvider theme={theme}>
       <div className="container mx-auto max-w-10xl px-4">
         <Card variant="outlined" className="pt-4 mt-10">
-          <h1 className="text-xl text-center">Wage Visualization</h1>
+          <h1 className="text-xl text-center">Wage Trends</h1>
           <StateOccupationToggle
             visualizationType={visualizationType}
-            onVisualizationTypeChange={onVisualizationTypeChange}
+            onVisualizationTypeChange={handleVisualizationTypeChange}
           />
           <Divider className="!mt-4" />
           <div className="flex">
@@ -56,9 +79,15 @@ export default function WageVisualization({ states, occupations }: Props) {
               states={states}
               occupations={occupations}
               wageTypes={wageTypes}
-              onWageTypesChange={onWageTypesChange}
+              selection={selection}
+              onWageTypesChange={handleWageTypesChange}
+              onSelectionChange={handleSelectionChange}
             />
-            <Graph wageTypes={wageTypes} />
+            <Graph
+              visualizationType={visualizationType}
+              wageTypes={wageTypes}
+              selection={selection}
+            />
           </div>
         </Card>
       </div>

@@ -10,7 +10,9 @@ interface Props {
   states: string[];
   occupations: string[];
   wageTypes: WageTypes;
+  selection: string | null;
   onWageTypesChange: (name: WageType, checked: boolean) => void;
+  onSelectionChange: (selection: string) => void;
 }
 
 export default function GraphControls({
@@ -18,7 +20,9 @@ export default function GraphControls({
   states,
   occupations,
   wageTypes,
+  selection,
   onWageTypesChange,
+  onSelectionChange,
 }: Props) {
   return (
     <div className="border-r border-slate-200 w-80">
@@ -28,6 +32,8 @@ export default function GraphControls({
         visualizationType={visualizationType}
         states={states}
         occupations={occupations}
+        selection={selection}
+        onSelectionChange={onSelectionChange}
       />
     </div>
   );
