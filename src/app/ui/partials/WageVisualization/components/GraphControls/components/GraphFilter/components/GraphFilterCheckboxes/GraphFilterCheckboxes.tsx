@@ -42,7 +42,7 @@ export default function GraphFilterCheckboxes({
               <Checkbox
                 name={s}
                 onChange={handleChange}
-                checked={subSelection[s]}
+                checked={subSelection[s] || false}
               />
             }
             label={s}
@@ -62,7 +62,7 @@ export default function GraphFilterCheckboxes({
               <Checkbox
                 name={o}
                 onChange={handleChange}
-                checked={subSelection[o]}
+                checked={subSelection[o] || false}
               />
             }
             label={o}

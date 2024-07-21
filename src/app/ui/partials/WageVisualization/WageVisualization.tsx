@@ -99,9 +99,10 @@ export default function WageVisualization({ states, occupations }: Props) {
               onSubSelectionChange={handleSubSelectionChange}
             />
             <Graph
-              visualizationType={visualizationType}
+              isVisualizationTypeState={isVisualizationTypeState}
               wageTypes={wageTypes}
               selection={selection}
+              subSelection={subSelection}
             />
           </div>
         </Card>
