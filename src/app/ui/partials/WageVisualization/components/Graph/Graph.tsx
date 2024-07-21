@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 import { SubSelection, WageTypes } from "@/interfaces";
 
 interface Props {
@@ -37,13 +39,19 @@ export default function Graph({
         </p>
       );
     } else {
-      content = <h2 className="text-lg text-center">{selection}</h2>;
+      content = <div>Graph</div>;
     }
   }
 
   return (
     <div className="p-4 flex-1 flex flex-col">
-      <h2 className="text-lg text-center">{selection || "Selection"}</h2>
+      <h2
+        className={clsx("text-lg text-center", {
+          "opacity-0": selection === null,
+        })}
+      >
+        {selection || "Selection"}
+      </h2>
       <div className="flex flex-1 items-center justify-center">{content}</div>
     </div>
   );
