@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import Chart from "./components/Chart";
 
 import { SubSelection, WageTypes } from "@/interfaces";
 
@@ -38,7 +38,9 @@ export default function Graph({
   return (
     <div className="p-4 flex-1 flex flex-col">
       <h2 className="text-lg text-center mb-2">{header}</h2>
-      <div className="flex-1">Chart</div>
+      <div className="flex-1">
+        <Chart />
+      </div>
     </div>
   );
 }
