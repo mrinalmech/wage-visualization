@@ -8,3 +8,11 @@ export interface WageObject {
   state: string;
   occ_title: string;
 }
+
+export type WageType = "nominal" | "rpp" | "cpi";
+
+export interface WageTypes {
+  nominal: boolean;
+  rpp: boolean;
+  cpi: boolean;
+}

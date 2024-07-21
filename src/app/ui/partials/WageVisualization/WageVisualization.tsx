@@ -5,7 +5,7 @@ import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 import { ThemeProvider } from "@mui/material/styles";
 
-import { VisualizationType } from "@/interfaces";
+import { VisualizationType, WageType, WageTypes } from "@/interfaces";
 import { theme } from "@/styles/materialTheme";
 
 import GraphControls from "./components/GraphControls";
@@ -27,6 +27,19 @@ export default function WageVisualization({ states, occupations }: Props) {
     setVisualizationType(newVisualizationType);
   };
 
+  const [wageTypes, setWageTypes] = useState<WageTypes>({
+    nominal: true,
+    rpp: false,
+    cpi: false,
+  });
+
+  const onWageTypesChange = (name: WageType, checked: boolean) => {
+    setWageTypes({
+      ...wageTypes,
+      [name]: checked,
+    });
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className="container mx-auto max-w-10xl px-4">
@@ -42,8 +55,10 @@ export default function WageVisualization({ states, occupations }: Props) {
               visualizationType={visualizationType}
               states={states}
               occupations={occupations}
+              wageTypes={wageTypes}
+              onWageTypesChange={onWageTypesChange}
             />
-            <Graph />
+            <Graph wageTypes={wageTypes} />
           </div>
         </Card>
       </div>
