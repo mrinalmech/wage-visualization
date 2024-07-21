@@ -3,18 +3,17 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
-import { VisualizationType } from "@/interfaces";
 import { Divider } from "@mui/material";
 
 interface Props {
-  visualizationType: VisualizationType;
+  isVisualizationTypeState: boolean;
   states: string[];
   occupations: string[];
   search: string;
 }
 
 export default function GraphFilterCheckboxes({
-  visualizationType,
+  isVisualizationTypeState,
   states,
   occupations,
   search,
@@ -48,8 +47,9 @@ export default function GraphFilterCheckboxes({
     [occupations, search]
   );
 
-  const checkboxes =
-    visualizationType === "state" ? stateCheckboxes : occupationCheckboxes;
+  const checkboxes = isVisualizationTypeState
+    ? occupationCheckboxes
+    : stateCheckboxes;
 
   return (
     <div className="mt-4">

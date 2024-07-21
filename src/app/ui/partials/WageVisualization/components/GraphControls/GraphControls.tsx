@@ -1,12 +1,12 @@
 import { Divider } from "@mui/material";
 
-import { VisualizationType, WageType, WageTypes } from "@/interfaces";
+import { WageType, WageTypes } from "@/interfaces";
 
 import WageTypeSelector from "./components/WageTypeSelector";
 import GraphFilter from "./components/GraphFilter";
 
 interface Props {
-  visualizationType: VisualizationType;
+  isVisualizationTypeState: boolean;
   states: string[];
   occupations: string[];
   wageTypes: WageTypes;
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function GraphControls({
-  visualizationType,
+  isVisualizationTypeState,
   states,
   occupations,
   wageTypes,
@@ -29,7 +29,7 @@ export default function GraphControls({
       <WageTypeSelector wageTypes={wageTypes} onChange={onWageTypesChange} />
       <Divider />
       <GraphFilter
-        visualizationType={visualizationType}
+        isVisualizationTypeState={isVisualizationTypeState}
         states={states}
         occupations={occupations}
         selection={selection}

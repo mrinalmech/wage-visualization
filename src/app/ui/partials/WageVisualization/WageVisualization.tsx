@@ -73,7 +73,7 @@ export default function WageVisualization({ states, occupations }: Props) {
           <Divider className="!mt-4" />
           <div className="flex">
             <GraphControls
-              visualizationType={visualizationType}
+              isVisualizationTypeState={isVisualizationTypeState}
               states={states}
               occupations={occupations}
               wageTypes={wageTypes}

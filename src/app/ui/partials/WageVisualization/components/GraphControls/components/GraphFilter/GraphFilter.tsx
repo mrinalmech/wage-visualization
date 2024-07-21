@@ -4,10 +4,8 @@ import GraphFilterDropdown from "./components/GraphFilterDropdown";
 import GraphFilterCheckboxes from "./components/GraphFilterCheckboxes";
 import GraphFilterSearch from "./components/GraphFilterSearch";
 
-import { VisualizationType } from "@/interfaces";
-
 interface Props {
-  visualizationType: VisualizationType;
+  isVisualizationTypeState: boolean;
   states: string[];
   occupations: string[];
   selection: string | null;
@@ -15,7 +13,7 @@ interface Props {
 }
 
 export default function GraphFilter({
-  visualizationType,
+  isVisualizationTypeState,
   states,
   occupations,
   selection,
@@ -30,18 +28,18 @@ export default function GraphFilter({
   return (
     <>
       <GraphFilterDropdown
-        visualizationType={visualizationType}
+        isVisualizationTypeState={isVisualizationTypeState}
         states={states}
         occupations={occupations}
         selection={selection}
         onSelectionChange={onSelectionChange}
       />
       <GraphFilterSearch
-        visualizationType={visualizationType}
+        isVisualizationTypeState={isVisualizationTypeState}
         onSearch={handleSearch}
       />
       <GraphFilterCheckboxes
-        visualizationType={visualizationType}
+        isVisualizationTypeState={isVisualizationTypeState}
         states={states}
         occupations={occupations}
         search={search}

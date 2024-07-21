@@ -4,18 +4,18 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 
-import { VisualizationType } from "@/interfaces";
-
 interface Props {
-  visualizationType: VisualizationType;
+  isVisualizationTypeState: boolean;
   onSearch: (newSearch: string) => void;
 }
 
 export default function GraphFilterSearch({
-  visualizationType,
+  isVisualizationTypeState,
   onSearch,
 }: Props) {
-  const label = `Filter by ${visualizationType}`;
+  const label = `Filter by ${
+    isVisualizationTypeState ? "occupation" : "state"
+  }`;
 
   const handleSearch = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

@@ -5,7 +5,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { VisualizationType } from "@/interfaces";
 
 interface Props {
-  visualizationType: VisualizationType;
+  isVisualizationTypeState: boolean;
   states: string[];
   occupations: string[];
   selection: string | null;
@@ -13,13 +13,13 @@ interface Props {
 }
 
 export default function GraphFilterDropdown({
-  visualizationType,
+  isVisualizationTypeState,
   states,
   occupations,
   selection,
   onSelectionChange,
 }: Props) {
-  const label = visualizationType === "state" ? "Occupation" : "State";
+  const label = isVisualizationTypeState ? "State" : "Occupation";
 
   const stateOptions = useMemo(
     () => states.map((s) => ({ label: s })),
@@ -31,8 +31,7 @@ export default function GraphFilterDropdown({
     [occupations]
   );
 
-  const options =
-    visualizationType === "state" ? occupationOptions : stateOptions;
+  const options = isVisualizationTypeState ? stateOptions : occupationOptions;
 
   const handleChange = (e: SyntheticEvent, value: { label: string } | null) => {
     if (value) {
