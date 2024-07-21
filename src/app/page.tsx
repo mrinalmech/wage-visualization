@@ -11,6 +11,8 @@ export default async function Home() {
   );
   const data = JSON.parse(file);
 
+  console.log(data);
+
   const statesData = data.map((o: WageObject) => o.state) as string[];
   const states = [...new Set(statesData)];
 

@@ -38,7 +38,7 @@ export default function Graph({
   return (
     <div className="p-4 flex-1 flex flex-col">
       <h2 className="text-lg text-center mb-2">{header}</h2>
-      <div className="flex-1">
+      <div className="flex-1 flex items-center justify-center">
         <Chart />
       </div>
     </div>
