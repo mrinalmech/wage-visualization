@@ -24,7 +24,7 @@ interface Props {
 
 export default function WageVisualization({ states, occupations }: Props) {
   const [visualizationType, setVisualizationType] =
-    useState<VisualizationType>("state");
+    useState<VisualizationType>("occupation");
 
   const isVisualizationTypeState = visualizationType === "state";
 
