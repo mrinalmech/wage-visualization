@@ -4,12 +4,16 @@ import GraphFilterDropdown from "./components/GraphFilterDropdown";
 import GraphFilterCheckboxes from "./components/GraphFilterCheckboxes";
 import GraphFilterSearch from "./components/GraphFilterSearch";
 
+import { SubSelection } from "@/interfaces";
+
 interface Props {
   isVisualizationTypeState: boolean;
   states: string[];
   occupations: string[];
   selection: string | null;
+  subSelection: SubSelection;
   onSelectionChange: (selection: string) => void;
+  onSubSelectionChange: (key: string, value: boolean) => void;
 }
 
 export default function GraphFilter({
@@ -17,7 +21,9 @@ export default function GraphFilter({
   states,
   occupations,
   selection,
+  subSelection,
   onSelectionChange,
+  onSubSelectionChange,
 }: Props) {
   const [search, setSearch] = useState("");
 
@@ -43,6 +49,8 @@ export default function GraphFilter({
         states={states}
         occupations={occupations}
         search={search}
+        subSelection={subSelection}
+        onSubSelectionChange={onSubSelectionChange}
       />
     </>
   );

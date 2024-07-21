@@ -1,6 +1,6 @@
 import { Divider } from "@mui/material";
 
-import { WageType, WageTypes } from "@/interfaces";
+import { SubSelection, WageType, WageTypes } from "@/interfaces";
 
 import WageTypeSelector from "./components/WageTypeSelector";
 import GraphFilter from "./components/GraphFilter";
@@ -11,8 +11,10 @@ interface Props {
   occupations: string[];
   wageTypes: WageTypes;
   selection: string | null;
+  subSelection: SubSelection;
   onWageTypesChange: (name: WageType, checked: boolean) => void;
   onSelectionChange: (selection: string) => void;
+  onSubSelectionChange: (key: string, value: boolean) => void;
 }
 
 export default function GraphControls({
@@ -21,8 +23,10 @@ export default function GraphControls({
   occupations,
   wageTypes,
   selection,
+  subSelection,
   onWageTypesChange,
   onSelectionChange,
+  onSubSelectionChange,
 }: Props) {
   return (
     <div className="border-r border-slate-200 w-80">
@@ -33,7 +37,9 @@ export default function GraphControls({
         states={states}
         occupations={occupations}
         selection={selection}
+        subSelection={subSelection}
         onSelectionChange={onSelectionChange}
+        onSubSelectionChange={onSubSelectionChange}
       />
     </div>
   );

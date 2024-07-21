@@ -16,3 +16,7 @@ export interface WageTypes {
   rpp: boolean;
   cpi: boolean;
 }
+
+export interface SubSelection {
+  [key: string]: any;
+}

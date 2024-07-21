@@ -5,7 +5,12 @@ import Card from "@mui/material/Card";
 import Divider from "@mui/material/Divider";
 import { ThemeProvider } from "@mui/material/styles";
 
-import { VisualizationType, WageType, WageTypes } from "@/interfaces";
+import {
+  SubSelection,
+  VisualizationType,
+  WageType,
+  WageTypes,
+} from "@/interfaces";
 import { theme } from "@/styles/materialTheme";
 
 import GraphControls from "./components/GraphControls";
@@ -29,13 +34,6 @@ export default function WageVisualization({ states, occupations }: Props) {
     cpi: false,
   });
 
-  const handleWageTypesChange = (name: WageType, checked: boolean) => {
-    setWageTypes({
-      ...wageTypes,
-      [name]: checked,
-    });
-  };
-
   const [selectedState, setSelectedState] = useState<string | null>(null);
   const [selectedOccupation, setSelectedOccupation] = useState<string | null>(
     null
@@ -45,6 +43,24 @@ export default function WageVisualization({ states, occupations }: Props) {
     ? selectedState
     : selectedOccupation;
 
+  const [subSelection, setSubSelection] = useState<SubSelection>({});
+
+  const handleVisualizationTypeChange = (
+    newVisualizationType: VisualizationType
+  ) => {
+    setVisualizationType(newVisualizationType);
+    setSelectedOccupation(null);
+    setSelectedState(null);
+    setSubSelection({});
+  };
+
+  const handleWageTypesChange = (name: WageType, checked: boolean) => {
+    setWageTypes({
+      ...wageTypes,
+      [name]: checked,
+    });
+  };
+
   const handleSelectionChange = (selection: string) => {
     if (isVisualizationTypeState) {
       setSelectedState(selection);
@@ -53,12 +69,11 @@ export default function WageVisualization({ states, occupations }: Props) {
     }
   };
 
-  const handleVisualizationTypeChange = (
-    newVisualizationType: VisualizationType
-  ) => {
-    setVisualizationType(newVisualizationType);
-    setSelectedOccupation(null);
-    setSelectedState(null);
+  const handleSubSelectionChange = (key: string, value: boolean) => {
+    setSubSelection({
+      ...subSelection,
+      [key]: value,
+    });
   };
 
   return (
@@ -78,8 +93,10 @@ export default function WageVisualization({ states, occupations }: Props) {
               occupations={occupations}
               wageTypes={wageTypes}
               selection={selection}
+              subSelection={subSelection}
               onWageTypesChange={handleWageTypesChange}
               onSelectionChange={handleSelectionChange}
+              onSubSelectionChange={handleSubSelectionChange}
             />
             <Graph
               visualizationType={visualizationType}
