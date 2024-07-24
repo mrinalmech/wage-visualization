@@ -11,12 +11,10 @@ export interface WageObject {
 
 export type WageType = "nominal" | "rpp" | "cpi";
 
-export interface WageTypes {
-  nominal: boolean;
-  rpp: boolean;
-  cpi: boolean;
-}
+export type WageTypes = {
+  [key in WageType]: boolean;
+};
 
 export interface SubSelection {
-  [key: string]: any;
+  [key: string]: boolean;
 }

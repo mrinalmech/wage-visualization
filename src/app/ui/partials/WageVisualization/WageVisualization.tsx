@@ -8,6 +8,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import {
   SubSelection,
   VisualizationType,
+  WageObject,
   WageType,
   WageTypes,
 } from "@/interfaces";
@@ -20,9 +21,14 @@ import StateOccupationToggle from "./components/StateOccupationToggle";
 interface Props {
   states: string[];
   occupations: string[];
+  wageData: WageObject[];
 }
 
-export default function WageVisualization({ states, occupations }: Props) {
+export default function WageVisualization({
+  states,
+  occupations,
+  wageData,
+}: Props) {
   const [visualizationType, setVisualizationType] =
     useState<VisualizationType>("occupation");
 
@@ -103,6 +109,7 @@ export default function WageVisualization({ states, occupations }: Props) {
               wageTypes={wageTypes}
               selection={selection}
               subSelection={subSelection}
+              wageData={wageData}
             />
           </div>
         </Card>

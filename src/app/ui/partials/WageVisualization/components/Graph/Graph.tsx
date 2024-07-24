@@ -1,12 +1,14 @@
+import { booleanReduce } from "@/util";
 import Chart from "./components/Chart";
 
-import { SubSelection, WageTypes } from "@/interfaces";
+import { SubSelection, WageObject, WageTypes } from "@/interfaces";
 
 interface Props {
   wageTypes: WageTypes;
   isVisualizationTypeState: boolean;
   selection: string | null;
   subSelection: SubSelection;
+  wageData: WageObject[];
 }
 
 export default function Graph({
@@ -14,6 +16,7 @@ export default function Graph({
   isVisualizationTypeState,
   selection,
   subSelection,
+  wageData,
 }: Props) {
   let header = "";
 
@@ -22,9 +25,7 @@ export default function Graph({
       isVisualizationTypeState ? "a state" : "an occupation"
     } from the dropdown on the left`;
   } else {
-    const subSelectionArray = Object.values(subSelection);
-
-    const subSelectionMade = subSelectionArray.reduce((a, c) => a || c, false);
+    const subSelectionMade = booleanReduce(subSelection);
 
     if (!subSelectionMade) {
       header = `Please select at least one ${
@@ -39,7 +40,13 @@ export default function Graph({
     <div className="p-4 flex-1 flex flex-col">
       <h2 className="text-lg text-center mb-2">{header}</h2>
       <div className="flex-1 flex items-center justify-center">
-        <Chart />
+        <Chart
+          isVisualizationTypeState={isVisualizationTypeState}
+          wageTypes={wageTypes}
+          selection={selection}
+          subSelection={subSelection}
+          wageData={wageData}
+        />
       </div>
     </div>
   );

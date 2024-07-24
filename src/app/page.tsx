@@ -9,19 +9,21 @@ export default async function Home() {
     process.cwd() + "/src/data/wage-data.json",
     "utf8"
   );
-  const data = JSON.parse(file);
+  const wageData: WageObject[] = JSON.parse(file);
 
-  console.log(data);
-
-  const statesData = data.map((o: WageObject) => o.state) as string[];
+  const statesData = wageData.map((o) => o.state) as string[];
   const states = [...new Set(statesData)];
 
-  const occupationsData = data.map((o: WageObject) => o.occ_title) as string[];
+  const occupationsData = wageData.map((o) => o.occ_title) as string[];
   const occupations = [...new Set(occupationsData)];
 
   return (
     <main>
-      <WageVisualization states={states} occupations={occupations} />
+      <WageVisualization
+        states={states}
+        occupations={occupations}
+        wageData={wageData}
+      />
     </main>
   );
 }
