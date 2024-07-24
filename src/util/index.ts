@@ -7,3 +7,13 @@ export const booleanReduce = (obj: { [key: string | WageType]: boolean }) => {
 
   return reducedValue;
 };
+
+const getRandomNumber = (limit: number) => {
+  return Math.floor(Math.random() * limit);
+};
+
+export const getRandomColor = (): string => {
+  const h = getRandomNumber(360);
+  const randomColor = `hsl(${h}deg, 60%, 50%)`;
+  return randomColor;
+};

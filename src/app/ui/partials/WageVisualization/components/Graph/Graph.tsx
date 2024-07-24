@@ -1,7 +1,8 @@
-import { booleanReduce } from "@/util";
 import Chart from "./components/Chart";
 
 import { SubSelection, WageObject, WageTypes } from "@/interfaces";
+
+import { booleanReduce } from "@/util";
 
 interface Props {
   wageTypes: WageTypes;

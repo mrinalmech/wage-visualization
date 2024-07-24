@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
-import { Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
 
 import { SubSelection, WageObject, WageTypes } from "@/interfaces";
-import { booleanReduce } from "@/util";
+import { booleanReduce, getRandomColor } from "@/util";
 
 interface Props {
   wageTypes: WageTypes;
@@ -44,17 +44,17 @@ const processWageData = (
       if (subSelection[o[secondarySelection]]) {
         if (data[o.year]) {
           if (wageTypes.nominal) {
-            data[o.year][`${o[secondarySelection]}-nominal`] =
+            data[o.year][`${o[secondarySelection]}-Nominal`] =
               o.a_median.toFixed(0);
           }
 
           if (wageTypes.rpp) {
-            data[o.year][`${o[secondarySelection]}-rpp`] =
+            data[o.year][`${o[secondarySelection]}-RPP`] =
               o.a_median_RPP.toFixed(0);
           }
 
           if (wageTypes.cpi) {
-            data[o.year][`${o[secondarySelection]}-cpi`] =
+            data[o.year][`${o[secondarySelection]}-CPI`] =
               o.a_median_CPI.toFixed(0);
           }
         } else {
@@ -64,17 +64,17 @@ const processWageData = (
           };
 
           if (wageTypes.nominal) {
-            data[o.year][`${o[secondarySelection]}-nominal`] =
+            data[o.year][`${o[secondarySelection]}-Nominal`] =
               o.a_median.toFixed(0);
           }
 
           if (wageTypes.rpp) {
-            data[o.year][`${o[secondarySelection]}-rpp`] =
+            data[o.year][`${o[secondarySelection]}-RPP`] =
               o.a_median_RPP.toFixed(0);
           }
 
           if (wageTypes.cpi) {
-            data[o.year][`${o[secondarySelection]}-cpi`] =
+            data[o.year][`${o[secondarySelection]}-CPI`] =
               o.a_median_CPI.toFixed(0);
           }
         }
@@ -104,75 +104,98 @@ export default function Chart({
     wageData
   );
 
-  let lines: ReactNode[] = [];
+  const lines: ReactNode[] = [];
+  const legendItems: ReactNode[] = [];
 
-  Object.entries(subSelection).forEach(([key, value]) => {
-    if (value) {
-      if (wageTypes.nominal) {
-        lines.push(
-          <Line
-            key={`${key}-nominal`}
-            type="monotone"
-            dataKey={`${key}-nominal`}
-            stroke="#8884d8"
-          />
-        );
-      }
+  const colors: string[] = [];
 
-      if (wageTypes.rpp) {
-        lines.push(
-          <Line
-            key={`${key}-rpp`}
-            type="monotone"
-            dataKey={`${key}-rpp`}
-            stroke="#8884d8"
-            strokeDasharray="5 3"
-            dot={{ strokeDasharray: "0" }}
-          />
-        );
-      }
+  if (selection) {
+    Object.entries(subSelection).forEach(([key, value]) => {
+      if (value) {
+        let color = "";
 
-      if (wageTypes.cpi) {
-        lines.push(
-          <Line
-            key={`${key}-cpi`}
-            type="monotone"
-            dataKey={`${key}-cpi`}
-            stroke="#8884d8"
-            strokeDasharray="1 2"
-            dot={{ strokeDasharray: "0" }}
-          />
-        );
+        while (!colors.includes(color)) {
+          color = getRandomColor();
+          if (!colors.includes(color)) {
+            colors.push(color);
+          }
+        }
+
+        if (wageTypes.nominal || wageTypes.rpp || wageTypes.cpi) {
+          legendItems.push(
+            <div key={key} className="mb-1 last:mb-0 flex items-center">
+              <div
+                className="w-3 h-3 mr-2"
+                style={{ backgroundColor: color }}
+              />
+              <p style={{ color }} className="flex-1">
+                {key}
+              </p>
+            </div>
+          );
+        }
+
+        if (wageTypes.nominal) {
+          lines.push(
+            <Line
+              key={`${key}-Nominal`}
+              type="monotone"
+              dataKey={`${key}-Nominal`}
+              stroke={color}
+            />
+          );
+        }
+
+        if (wageTypes.rpp) {
+          lines.push(
+            <Line
+              key={`${key}-RPP`}
+              type="monotone"
+              dataKey={`${key}-RPP`}
+              stroke={color}
+              strokeDasharray="5 3"
+              dot={{ strokeDasharray: "0" }}
+            />
+          );
+        }
+
+        if (wageTypes.cpi) {
+          lines.push(
+            <Line
+              key={`${key}-CPI`}
+              type="monotone"
+              dataKey={`${key}-CPI`}
+              stroke={color}
+              strokeDasharray="1 2"
+              dot={{ strokeDasharray: "0" }}
+            />
+          );
+        }
       }
-    }
-  });
+    });
+  }
 
   return (
-    <LineChart
-      width={1000}
-      height={600}
-      data={chartData}
-      margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
-    >
-      <XAxis
-        dataKey="year"
-        domain={[2017, 2022]}
-        ticks={[2018, 2019, 2020, 2021, 2022]}
-        type="number"
-      />
-      <YAxis
-        type="number"
-        domain={[0, 250000]}
-        ticks={[50000, 100000, 150000, 200000, 250000]}
-      />
-      <Tooltip />
-      <Legend
-        align="right"
-        layout="vertical"
-        verticalAlign="middle"
-        wrapperStyle={{ paddingLeft: 50 }}
-      />
-      {lines}
-    </LineChart>
+    <div className="grid grid-cols-5 gap-4 w-full">
+      <div className="col-span-4">
+        <LineChart
+          width={800}
+          height={600}
+          data={chartData}
+          margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
+        >
+          <XAxis
+            dataKey="year"
+            domain={[2017, 2022]}
+            ticks={[2018, 2019, 2020, 2021, 2022]}
+            type="number"
+          />
+          <YAxis type="number" />
+          <Tooltip />
+          {lines}
+        </LineChart>
+      </div>
+      <div className="p-4">{legendItems}</div>
+    </div>
   );
 }
