@@ -26,58 +26,33 @@ const processWageData = (
 ): ChartData[] => {
   let data: { [year: number]: any } = {};
 
-  if (selection === null) return [];
-
-  const subSelectionMade = booleanReduce(subSelection);
-
-  if (!subSelectionMade) return [];
-
-  const wageTypesSelected = booleanReduce(wageTypes);
-
-  if (!wageTypesSelected) return [];
-
   const primarySelection = isVisualizationTypeState ? "state" : "occ_title";
   const secondarySelection = isVisualizationTypeState ? "occ_title" : "state";
 
   wageData.forEach((o) => {
-    if (selection === o[primarySelection]) {
-      if (subSelection[o[secondarySelection]]) {
-        if (data[o.year]) {
-          if (wageTypes.nominal) {
-            data[o.year][`${o[secondarySelection]}-Nominal`] =
-              o.a_median.toFixed(0);
-          }
+    if (
+      selection === o[primarySelection] &&
+      subSelection[o[secondarySelection]]
+    ) {
+      if (!data[o.year]) {
+        data = {
+          ...data,
+          [o.year]: {},
+        };
+      }
+      if (wageTypes.nominal && o.a_median) {
+        data[o.year][`${o[secondarySelection]}-Nominal`] =
+          o.a_median.toFixed(0);
+      }
 
-          if (wageTypes.rpp) {
-            data[o.year][`${o[secondarySelection]}-RPP`] =
-              o.a_median_RPP.toFixed(0);
-          }
+      if (wageTypes.rpp && o.a_median_RPP) {
+        data[o.year][`${o[secondarySelection]}-RPP`] =
+          o.a_median_RPP.toFixed(0);
+      }
 
-          if (wageTypes.cpi) {
-            data[o.year][`${o[secondarySelection]}-CPI`] =
-              o.a_median_CPI.toFixed(0);
-          }
-        } else {
-          data = {
-            ...data,
-            [o.year]: {},
-          };
-
-          if (wageTypes.nominal) {
-            data[o.year][`${o[secondarySelection]}-Nominal`] =
-              o.a_median.toFixed(0);
-          }
-
-          if (wageTypes.rpp) {
-            data[o.year][`${o[secondarySelection]}-RPP`] =
-              o.a_median_RPP.toFixed(0);
-          }
-
-          if (wageTypes.cpi) {
-            data[o.year][`${o[secondarySelection]}-CPI`] =
-              o.a_median_CPI.toFixed(0);
-          }
-        }
+      if (wageTypes.cpi && o.a_median_CPI) {
+        data[o.year][`${o[secondarySelection]}-CPI`] =
+          o.a_median_CPI.toFixed(0);
       }
     }
   });
@@ -96,6 +71,39 @@ export default function Chart({
   subSelection,
   wageData,
 }: Props) {
+  const subSelectionMade = booleanReduce(subSelection);
+  const wageTypesSelected = booleanReduce(wageTypes);
+
+  const renderBlankState =
+    selection === null || !subSelectionMade || !wageTypesSelected;
+
+  if (renderBlankState) {
+    return (
+      <div className="grid grid-cols-5 gap-4 w-full">
+        <div className="col-span-4">
+          <LineChart
+            width={800}
+            height={600}
+            data={[]}
+            margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
+          >
+            <XAxis
+              dataKey="year"
+              domain={[2017, 2022]}
+              ticks={[2018, 2019, 2020, 2021, 2022]}
+              type="number"
+            />
+            <YAxis
+              type="number"
+              domain={[0, 150000]}
+              ticks={[50000, 100000, 150000]}
+            />
+          </LineChart>
+        </div>
+      </div>
+    );
+  }
+
   const chartData = processWageData(
     wageTypes,
     isVisualizationTypeState,

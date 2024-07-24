@@ -26,14 +26,19 @@ export default function Graph({
       isVisualizationTypeState ? "a state" : "an occupation"
     } from the dropdown on the left`;
   } else {
-    const subSelectionMade = booleanReduce(subSelection);
-
-    if (!subSelectionMade) {
-      header = `Please select at least one ${
-        isVisualizationTypeState ? "occupation" : "state"
-      } from the checkboxes on the left`;
+    const wageTypesSelected = booleanReduce(wageTypes);
+    if (!wageTypesSelected) {
+      header = "Please select at least one wage type";
     } else {
-      header = selection;
+      const subSelectionMade = booleanReduce(subSelection);
+
+      if (!subSelectionMade) {
+        header = `Please select at least one ${
+          isVisualizationTypeState ? "occupation" : "state"
+        } from the checkboxes on the left`;
+      } else {
+        header = selection;
+      }
     }
   }
 
