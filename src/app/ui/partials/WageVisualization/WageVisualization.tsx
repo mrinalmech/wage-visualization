@@ -82,6 +82,10 @@ export default function WageVisualization({
     });
   };
 
+  const clearSubSelection = () => {
+    setSubSelection({});
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className="container mx-auto max-w-10xl px-4">
@@ -103,6 +107,7 @@ export default function WageVisualization({
               onWageTypesChange={handleWageTypesChange}
               onSelectionChange={handleSelectionChange}
               onSubSelectionChange={handleSubSelectionChange}
+              clearSubSelection={clearSubSelection}
             />
             <Graph
               isVisualizationTypeState={isVisualizationTypeState}

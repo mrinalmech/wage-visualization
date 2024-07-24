@@ -14,6 +14,6 @@ const getRandomNumber = (limit: number) => {
 
 export const getRandomColor = (): string => {
   const h = getRandomNumber(360);
-  const randomColor = `hsl(${h}deg, 60%, 50%)`;
+  const randomColor = `hsl(${h}deg, 50%, 50%)`;
   return randomColor;
 };

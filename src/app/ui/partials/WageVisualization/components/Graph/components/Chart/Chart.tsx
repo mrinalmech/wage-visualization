@@ -203,7 +203,7 @@ export default function Chart({
           {lines}
         </LineChart>
       </div>
-      <div className="p-4">{legendItems}</div>
+      <div>{legendItems}</div>
     </div>
   );
 }

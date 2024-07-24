@@ -15,6 +15,7 @@ interface Props {
   onWageTypesChange: (name: WageType, checked: boolean) => void;
   onSelectionChange: (selection: string) => void;
   onSubSelectionChange: (key: string, value: boolean) => void;
+  clearSubSelection: () => void;
 }
 
 export default function GraphControls({
@@ -27,6 +28,7 @@ export default function GraphControls({
   onWageTypesChange,
   onSelectionChange,
   onSubSelectionChange,
+  clearSubSelection,
 }: Props) {
   return (
     <div className="border-r border-slate-200 w-80">
@@ -40,6 +42,7 @@ export default function GraphControls({
         subSelection={subSelection}
         onSelectionChange={onSelectionChange}
         onSubSelectionChange={onSubSelectionChange}
+        clearSubSelection={clearSubSelection}
       />
     </div>
   );

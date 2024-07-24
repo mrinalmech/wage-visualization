@@ -14,6 +14,7 @@ interface Props {
   subSelection: SubSelection;
   onSelectionChange: (selection: string) => void;
   onSubSelectionChange: (key: string, value: boolean) => void;
+  clearSubSelection: () => void;
 }
 
 export default function GraphFilter({
@@ -24,6 +25,7 @@ export default function GraphFilter({
   subSelection,
   onSelectionChange,
   onSubSelectionChange,
+  clearSubSelection,
 }: Props) {
   const [search, setSearch] = useState("");
 
@@ -51,6 +53,7 @@ export default function GraphFilter({
         search={search}
         subSelection={subSelection}
         onSubSelectionChange={onSubSelectionChange}
+        clearSubSelection={clearSubSelection}
       />
     </>
   );

@@ -2,7 +2,7 @@ import { ChangeEvent, useCallback, useMemo } from "react";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Divider } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 
 import { SubSelection } from "@/interfaces";
 
@@ -13,6 +13,7 @@ interface Props {
   search: string;
   subSelection: SubSelection;
   onSubSelectionChange: (key: string, value: boolean) => void;
+  clearSubSelection: () => void;
 }
 
 export default function GraphFilterCheckboxes({
@@ -22,6 +23,7 @@ export default function GraphFilterCheckboxes({
   search,
   subSelection,
   onSubSelectionChange,
+  clearSubSelection,
 }: Props) {
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -30,6 +32,10 @@ export default function GraphFilterCheckboxes({
     },
     [onSubSelectionChange]
   );
+
+  const handleClick = () => {
+    clearSubSelection();
+  };
 
   const stateCheckboxes = useMemo(
     () =>
@@ -79,8 +85,14 @@ export default function GraphFilterCheckboxes({
   return (
     <div className="mt-4">
       <Divider />
-      <div className="pl-4 h-96 overflow-y-scroll">
+      <div className="pl-4 h-80 overflow-y-scroll">
         <FormGroup>{checkboxes}</FormGroup>
+      </div>
+      <Divider />
+      <div className="p-3 text-center">
+        <Button variant="contained" onClick={handleClick}>
+          Clear Selection
+        </Button>
       </div>
     </div>
   );
