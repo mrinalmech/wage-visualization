@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
 
 import { SubSelection, WageObject, WageTypes } from "@/interfaces";
@@ -102,6 +102,30 @@ export default function Chart({
   const renderBlankState =
     selection === null || !subSelectionMade || !wageTypesSelected;
 
+  const [lineColors, setLineColors] = useState({} as { [key: string]: string });
+
+  useEffect(() => {
+    const newLineColors = {} as { [key: string]: string };
+
+    Object.keys(subSelection).forEach((selection) => {
+      if (lineColors[selection]) {
+        newLineColors[selection] = lineColors[selection];
+      } else {
+        let color = getRandomColor();
+
+        const colorsArray = Object.values(lineColors);
+
+        while (colorsArray.includes(color)) {
+          color = getRandomColor();
+        }
+
+        newLineColors[selection] = color;
+      }
+    });
+
+    setLineColors(newLineColors);
+  }, [subSelection, lineColors]);
+
   if (renderBlankState) {
     return <BlankState />;
   }
@@ -121,16 +145,8 @@ export default function Chart({
 
   if (selection) {
     Object.entries(subSelection).forEach(([key, value]) => {
-      if (value) {
-        let color = "";
-
-        while (!colors.includes(color)) {
-          color = getRandomColor();
-          if (!colors.includes(color)) {
-            colors.push(color);
-          }
-        }
-
+      const color = lineColors[key];
+      if (value && color) {
         const { nominal, rpp, cpi } = wageTypes;
 
         if (nominal || rpp || cpi) {
@@ -188,6 +204,7 @@ export default function Chart({
               dataKey={`${key}-Nominal`}
               name={key}
               stroke={color}
+              isAnimationActive={false}
             />
           );
         }
@@ -202,6 +219,7 @@ export default function Chart({
               stroke={color}
               strokeDasharray="5 3"
               dot={{ strokeDasharray: "0" }}
+              isAnimationActive={false}
             />
           );
         }
@@ -216,6 +234,7 @@ export default function Chart({
               stroke={color}
               strokeDasharray="1 2"
               dot={{ strokeDasharray: "0" }}
+              isAnimationActive={false}
             />
           );
         }
