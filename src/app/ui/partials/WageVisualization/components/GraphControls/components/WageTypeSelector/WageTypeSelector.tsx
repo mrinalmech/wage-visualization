@@ -1,6 +1,8 @@
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import { Tooltip } from "@mui/material";
+import InfoIcon from "@mui/icons-material/InfoOutlined";
 
 import { WageType, WageTypes } from "@/interfaces";
 
@@ -28,19 +30,58 @@ export default function WageTypeSelector({ wageTypes, onChange }: Props) {
               name="nominal"
             />
           }
-          label="Nominal"
+          label={
+            <div className="flex">
+              <span className="mr-2">Nominal</span>
+              <Tooltip
+                title="Actual dollar amounts paid to workers, not adjusted for inflation or cost of living."
+                placement="right"
+                classes={{
+                  tooltip: "text-sm",
+                }}
+              >
+                <InfoIcon />
+              </Tooltip>
+            </div>
+          }
         />
         <FormControlLabel
           control={
             <Checkbox checked={rpp} onChange={handleChange} name="rpp" />
           }
-          label="RPP-adjusted"
+          label={
+            <div className="flex">
+              <span className="mr-2">RPP-adjusted</span>
+              <Tooltip
+                title="Wages adjusted using Regional Price Parities, which account for differences in price levels across states."
+                placement="right"
+                classes={{
+                  tooltip: "text-sm",
+                }}
+              >
+                <InfoIcon />
+              </Tooltip>
+            </div>
+          }
         />
         <FormControlLabel
           control={
             <Checkbox checked={cpi} onChange={handleChange} name="cpi" />
           }
-          label="CPI-adjusted"
+          label={
+            <div className="flex">
+              <span className="mr-2">CPI-adjusted</span>
+              <Tooltip
+                title="Wages adjusted using the Consumer Price Index, which accounts for changes in the cost of living over time."
+                placement="right"
+                classes={{
+                  tooltip: "text-sm",
+                }}
+              >
+                <InfoIcon />
+              </Tooltip>
+            </div>
+          }
         />
       </FormGroup>
     </div>
