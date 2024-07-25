@@ -196,7 +196,7 @@ export default function Chart({
           );
         }
 
-        if (wageTypes.nominal) {
+        if (nominal) {
           lines.push(
             <Line
               key={`${key}-Nominal`}
@@ -209,7 +209,7 @@ export default function Chart({
           );
         }
 
-        if (wageTypes.rpp) {
+        if (rpp) {
           lines.push(
             <Line
               key={`${key}-RPP`}
@@ -224,7 +224,7 @@ export default function Chart({
           );
         }
 
-        if (wageTypes.cpi) {
+        if (cpi) {
           lines.push(
             <Line
               key={`${key}-CPI`}
