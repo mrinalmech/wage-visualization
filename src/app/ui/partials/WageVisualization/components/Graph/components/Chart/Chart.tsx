@@ -1,5 +1,9 @@
 import { ReactNode, useEffect, useState } from "react";
-import { Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
+import { Line, LineChart, Tooltip, TooltipProps, XAxis, YAxis } from "recharts";
+import {
+  ValueType,
+  NameType,
+} from "recharts/types/component/DefaultTooltipContent";
 
 import { SubSelection, WageObject, WageTypes } from "@/interfaces";
 import { booleanReduce, getRandomColor } from "@/util";
@@ -246,32 +250,28 @@ export default function Chart({
     active,
     payload,
     label,
-  }: {
-    active: boolean;
-    payload: any;
-    label: number;
-  }) => {
+  }: TooltipProps<ValueType, NameType>) => {
     if (active && payload && payload.length) {
       const tooltipItems: ReactNode[] = [];
 
       Object.entries(subSelection).forEach(([key, value]) => {
         if (value) {
           let color = null as string | null;
-          let nominalValue = null as string | null;
-          let rppValue = null as string | null;
-          let cpiValue = null as string | null;
+          let nominalValue = null as ValueType | null;
+          let rppValue = null as ValueType | null;
+          let cpiValue = null as ValueType | null;
 
           for (const elem of payload) {
             if (elem.name === key) {
-              if (color === null) {
+              if (color === null && elem.color) {
                 color = elem.color;
               }
 
-              if (elem.dataKey === `${key}-Nominal`) {
+              if (elem.dataKey === `${key}-Nominal` && elem.value) {
                 nominalValue = elem.value;
-              } else if (elem.dataKey === `${key}-RPP`) {
+              } else if (elem.dataKey === `${key}-RPP` && elem.value) {
                 rppValue = elem.value;
-              } else if (elem.dataKey === `${key}-CPI`) {
+              } else if (elem.dataKey === `${key}-CPI` && elem.value) {
                 cpiValue = elem.value;
               }
 
