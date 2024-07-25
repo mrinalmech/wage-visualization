@@ -129,16 +129,51 @@ export default function Chart({
           }
         }
 
-        if (wageTypes.nominal || wageTypes.rpp || wageTypes.cpi) {
-          legendItems.push(
-            <div key={key} className="mb-1 last:mb-0 flex items-center">
-              <div
-                className="w-3 h-3 mr-2"
-                style={{ backgroundColor: color }}
+        const { nominal, rpp, cpi } = wageTypes;
+
+        if (nominal || rpp || cpi) {
+          const nominalLegend = nominal && (
+            <div className="flex items-center">
+              <hr
+                style={{ borderColor: color, borderWidth: 1 }}
+                className="w-10 mr-1"
               />
-              <p style={{ color }} className="flex-1">
-                {key}
+              <p style={{ color }} className="text-sm">
+                Nominal
               </p>
+            </div>
+          );
+
+          const rppLegend = rpp && (
+            <div className="flex items-center">
+              <hr
+                style={{ borderColor: color, borderWidth: 1 }}
+                className="w-10 mr-1 border-dashed"
+              />
+              <p style={{ color }} className="text-sm">
+                RPP-adjusted
+              </p>
+            </div>
+          );
+
+          const cpiLegend = cpi && (
+            <div className="flex items-center">
+              <hr
+                style={{ borderColor: color, borderWidth: 1 }}
+                className="w-10 mr-1 border-dotted"
+              />
+              <p style={{ color }} className="text-sm">
+                CPI-adjusted
+              </p>
+            </div>
+          );
+
+          legendItems.push(
+            <div key={key} className="mb-3 last:mb-0">
+              <h3 style={{ color }}>{key}</h3>
+              {nominalLegend}
+              {rppLegend}
+              {cpiLegend}
             </div>
           );
         }
