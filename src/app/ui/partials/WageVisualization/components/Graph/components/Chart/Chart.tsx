@@ -76,7 +76,7 @@ const BlankState = ({ height, width }: { height: number; width: number }) => (
         width={width}
         height={height}
         data={[]}
-        margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+        margin={{ top: 10, right: 10, left: 20, bottom: 0 }}
       >
         <XAxis
           dataKey="year"
@@ -369,7 +369,7 @@ export default function Chart({
           width={chartWidth}
           height={chartHeight}
           data={chartData}
-          margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+          margin={{ top: 10, right: 10, left: 20, bottom: 0 }}
         >
           <XAxis
             dataKey="year"
