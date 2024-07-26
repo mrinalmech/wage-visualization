@@ -108,6 +108,8 @@ export default function Chart({
 
   const [lineColors, setLineColors] = useState({} as { [key: string]: string });
 
+  const chartHeight = 600;
+
   useEffect(() => {
     const newLineColors = {} as { [key: string]: string };
 
@@ -144,8 +146,6 @@ export default function Chart({
 
   const lines: ReactNode[] = [];
   const legendItems: ReactNode[] = [];
-
-  const colors: string[] = [];
 
   if (selection) {
     Object.entries(subSelection).forEach(([key, value]) => {
@@ -335,7 +335,7 @@ export default function Chart({
       <div className="col-span-4">
         <LineChart
           width={800}
-          height={600}
+          height={chartHeight}
           data={chartData}
           margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
         >
@@ -350,7 +350,9 @@ export default function Chart({
           {lines}
         </LineChart>
       </div>
-      <div>{legendItems}</div>
+      <div style={{ maxHeight: chartHeight }} className="overflow-y-auto">
+        {legendItems}
+      </div>
     </div>
   );
 }

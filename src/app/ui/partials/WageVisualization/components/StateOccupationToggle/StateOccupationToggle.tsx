@@ -30,18 +30,18 @@ export default function StateOccupationToggle({
         aria-label="visualization type"
       >
         <ToggleButton
-          value="state"
-          aria-label="state"
-          classes={{ root: "!normal-case w-28 !text-base" }}
-        >
-          State
-        </ToggleButton>
-        <ToggleButton
           value="occupation"
           aria-label="occupation"
           classes={{ root: "!normal-case w-28 !text-base" }}
         >
           Occupation
+        </ToggleButton>
+        <ToggleButton
+          value="state"
+          aria-label="state"
+          classes={{ root: "!normal-case w-28 !text-base" }}
+        >
+          State
         </ToggleButton>
       </ToggleButtonGroup>
     </div>
