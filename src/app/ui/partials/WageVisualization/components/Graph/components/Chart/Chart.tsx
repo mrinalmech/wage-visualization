@@ -76,7 +76,7 @@ const BlankState = ({ height, width }: { height: number; width: number }) => (
         width={width}
         height={height}
         data={[]}
-        margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
+        margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
       >
         <XAxis
           dataKey="year"
