@@ -7,6 +7,7 @@ import {
 
 import { SubSelection, WageObject, WageTypes } from "@/interfaces";
 import { booleanReduce, getRandomColor } from "@/util";
+import { useBreakpointRegion } from "@/hooks";
 
 interface Props {
   wageTypes: WageTypes;
@@ -68,12 +69,12 @@ const processWageData = (
   return chartData;
 };
 
-const BlankState = () => (
+const BlankState = ({ height, width }: { height: number; width: number }) => (
   <div className="grid grid-cols-5 gap-4 w-full">
     <div className="col-span-4">
       <LineChart
-        width={800}
-        height={600}
+        width={width}
+        height={height}
         data={[]}
         margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
       >
@@ -108,20 +109,50 @@ export default function Chart({
 
   const [lineColors, setLineColors] = useState({} as { [key: string]: string });
 
-  const chartHeight = 600;
+  const breakpointRegion = useBreakpointRegion();
+
+  let chartWidth = 0;
+  let chartHeight = 600;
+
+  switch (breakpointRegion) {
+    case "2xl":
+      chartWidth = 800;
+      break;
+    case "xl":
+    case "lg":
+    case "md":
+      chartWidth = 700;
+      break;
+    case "sm":
+      chartWidth = 550;
+      chartHeight = 450;
+      break;
+    case "xs":
+      chartWidth = 350;
+      chartHeight = 400;
+      break;
+  }
 
   useEffect(() => {
+    const subSelectionKeys = Object.keys(subSelection);
+    const lineColorValues = Object.values(lineColors);
+
+    const colorsAlreadyAssigned =
+      subSelectionKeys.length === lineColorValues.length;
+
+    if (colorsAlreadyAssigned) {
+      return;
+    }
+
     const newLineColors = {} as { [key: string]: string };
 
-    Object.keys(subSelection).forEach((selection) => {
+    subSelectionKeys.forEach((selection) => {
       if (lineColors[selection]) {
         newLineColors[selection] = lineColors[selection];
       } else {
         let color = getRandomColor();
 
-        const colorsArray = Object.values(lineColors);
-
-        while (colorsArray.includes(color)) {
+        while (lineColorValues.includes(color)) {
           color = getRandomColor();
         }
 
@@ -133,7 +164,7 @@ export default function Chart({
   }, [subSelection, lineColors]);
 
   if (renderBlankState) {
-    return <BlankState />;
+    return <BlankState height={chartHeight} width={chartWidth} />;
   }
 
   const chartData = processWageData(
@@ -191,7 +222,7 @@ export default function Chart({
           );
 
           legendItems.push(
-            <div key={key} className="mb-3 last:mb-0">
+            <div key={key} className="mb-3 last:mb-0 mr-5 lg:mr-0">
               <h3 style={{ color }}>{key}</h3>
               {nominalLegend}
               {rppLegend}
@@ -331,13 +362,13 @@ export default function Chart({
   };
 
   return (
-    <div className="w-full flex">
-      <div className="flex-1">
+    <div className="w-full flex flex-col lg:flex-row">
+      <div className="flex-1 flex justify-center sm:justify-start">
         <LineChart
-          width={800}
+          width={chartWidth}
           height={chartHeight}
           data={chartData}
-          margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
         >
           <XAxis
             dataKey="year"
@@ -350,7 +381,10 @@ export default function Chart({
           {lines}
         </LineChart>
       </div>
-      <div style={{ maxHeight: chartHeight }} className="overflow-y-auto w-48">
+      <div
+        style={{ maxHeight: chartHeight }}
+        className="flex lg:block flex-wrap lg:flex-nowrap justify-center lg:justify-start overflow-y-auto  w-full lg:w-48 mt-4 lg:mt-0"
+      >
         {legendItems}
       </div>
     </div>

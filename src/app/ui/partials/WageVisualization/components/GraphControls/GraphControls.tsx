@@ -31,7 +31,7 @@ export default function GraphControls({
   clearSubSelection,
 }: Props) {
   return (
-    <div className="xl:border-r border-slate-200 w-full xl:w-80">
+    <div className="xl:border-r border-slate-200 w-full xl:w-72 2xl:w-80">
       <WageTypeSelector wageTypes={wageTypes} onChange={onWageTypesChange} />
       <Divider />
       <GraphFilter

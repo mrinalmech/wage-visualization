@@ -23,7 +23,7 @@ for (const bp in breakpoints) {
 }
 
 type Breakpoint = "sm" | "md" | "lg" | "xl" | "2xl";
-type BreakpointRegion = "xs" | "sm" | "md" | "lg" | "xl" | null;
+type BreakpointRegion = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | null;
 
 export function useBreakpointRegion() {
   const [breakpointRegion, setBreakpointRegion] = useState(
@@ -50,7 +50,11 @@ export function useBreakpointRegion() {
         return "lg";
       }
 
-      return "xl";
+      if (window.innerWidth < breakpointsNumbers["2xl"]) {
+        return "xl";
+      }
+
+      return "2xl";
     };
 
     const handleResize = () => {
