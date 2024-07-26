@@ -1,36 +1,40 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+I have also used [Typescript](https://www.typescriptlang.org/) for better type-safe code and [Tailwind](https://tailwindcss.com/) for styling.
 
-First, run the development server:
+A live version is deployed on http://65.1.208.19:3000/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Visualization library
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The visualization library used here is [recharts](https://recharts.org/en-US/).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The reason I chose this library is that it is lightweight and works well with React. It is also highly customizable and has animation support.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Implementation points
 
-## Learn More
+For the project structure I used separate folders for each React component and subfolders within those folders for sub-components.
 
-To learn more about Next.js, take a look at the following resources:
+I used [Material-UI](https://mui.com/material-ui/) for the components as they provide very clean looking React-based components with nice animation effects for interactivity.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For coloring the line graphs I used a random color choosing algorithm which chooses a color at random which contrasts well with the white background.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Other possible improvements
 
-## Deploy on Vercel
+There were other improvements which could have been done but I skipped due to lack of time.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Responsiveness
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Right now, on mobile devices I move around the chart controls from the left to the top and make it a bit smaller. But you could actually have a sliding chart control and free up the screen space exclusively for the chart.
+
+### Chart coloring
+
+A more complicated color choosing algorithm can be chosen. While the colors are distinct for each field, since it is random, a few colors might be too similar for the human eye (even if technically they are different colors). 
+
+Ideally, the colors should be manually chosen and sent via the API, rather than automatically generated. 
+
+There are a huge number of occupations so choosing colors for all of them might be difficult. What could be done is lumping occupations together to decrease the number of occupations. For example all occupations related to education and teaching can be under **"Education"**.
+
+### Animation
+
+Recharts does support animated charts but to have them working properly would mean having to manipulate the data in a specific manner in line with the way Recharts' animations expect.
+
