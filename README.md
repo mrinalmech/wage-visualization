@@ -20,6 +20,10 @@ For coloring the line graphs I used a random color choosing algorithm which choo
 
 There were other improvements which could have been done but I skipped due to lack of time.
 
+### Responsiveness
+
 Right now, on mobile devices I move around the chart controls from the left to the top and make it a bit smaller. But you could actually have a sliding chart control and free up the screen space exclusively for the chart.
+
+### Cahrt coloring
 
 A more complicated color choosing algorithm can be chosen. While the colors are distinct for each field, since it is random a few colors might be too similar for the human eye (even if technically they are different colors). Ideally, the colors should be manually chosen and sent via the API, rather than automatically generated. There are a huge number of occupations so choosing colors for all of them might be difficult. What could be done is lumping occupations together to decrease the number of occupations. For example all occupations related to education and teaching can be under **"Education"**.
