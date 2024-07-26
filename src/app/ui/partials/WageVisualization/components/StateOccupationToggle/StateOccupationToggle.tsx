@@ -22,7 +22,7 @@ export default function StateOccupationToggle({
   };
 
   return (
-    <div className="mx-auto flex justify-center mt-4">
+    <div className="mx-auto flex justify-center mt-2 xl:mt-4">
       <ToggleButtonGroup
         value={visualizationType}
         exclusive
@@ -32,14 +32,14 @@ export default function StateOccupationToggle({
         <ToggleButton
           value="occupation"
           aria-label="occupation"
-          classes={{ root: "!normal-case w-28 !text-base" }}
+          classes={{ root: "!normal-case !p-2 w-28 !text-base" }}
         >
           Occupation
         </ToggleButton>
         <ToggleButton
           value="state"
           aria-label="state"
-          classes={{ root: "!normal-case w-28 !text-base" }}
+          classes={{ root: "!normal-case !p-2 w-28 !text-base" }}
         >
           State
         </ToggleButton>

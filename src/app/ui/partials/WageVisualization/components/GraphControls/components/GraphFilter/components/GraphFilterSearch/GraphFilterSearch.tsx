@@ -24,7 +24,7 @@ export default function GraphFilterSearch({
   };
 
   return (
-    <div className="mt-4 px-4 h-10">
+    <div className="mt-2 px-2 lg:mt-4 lg:px-4 h-10">
       <Box sx={{ display: "flex", alignItems: "flex-end" }}>
         <SearchIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
         <TextField

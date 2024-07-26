@@ -19,9 +19,13 @@ export default function WageTypeSelector({ wageTypes, onChange }: Props) {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-2 xl:p-4">
       <h2 className="text-lg text-center">Wage Type</h2>
-      <FormGroup>
+      <FormGroup
+        classes={{
+          root: "flex-row xl:flex-col justify-center",
+        }}
+      >
         <FormControlLabel
           control={
             <Checkbox

@@ -88,15 +88,15 @@ export default function WageVisualization({
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="container mx-auto max-w-10xl px-4">
-        <Card variant="outlined" className="pt-4 mt-10">
+      <div className="container mx-auto px-4">
+        <Card variant="outlined" className="pt-2 xl:pt-4 mt-4 xl:mt-10">
           <h1 className="text-xl text-center">Wage Trends</h1>
           <StateOccupationToggle
             visualizationType={visualizationType}
             onVisualizationTypeChange={handleVisualizationTypeChange}
           />
-          <Divider className="!mt-4" />
-          <div className="flex">
+          <Divider className="!mt-2 !xl:mt-4" />
+          <div className="flex flex-col xl:flex-row">
             <GraphControls
               isVisualizationTypeState={isVisualizationTypeState}
               states={states}

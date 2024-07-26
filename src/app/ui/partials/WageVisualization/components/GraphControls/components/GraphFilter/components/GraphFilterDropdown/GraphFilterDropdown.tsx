@@ -42,7 +42,7 @@ export default function GraphFilterDropdown({
   const value = selection !== null ? { label: selection } : null;
 
   return (
-    <div className="px-4 pt-4">
+    <div className="px-2 pt-2 xl:px-4 xl:pt-4">
       <Autocomplete
         disablePortal
         id="filter-dropdown"

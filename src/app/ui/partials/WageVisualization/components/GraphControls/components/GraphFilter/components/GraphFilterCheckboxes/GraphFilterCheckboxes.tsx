@@ -85,7 +85,7 @@ export default function GraphFilterCheckboxes({
   return (
     <div className="mt-4">
       <Divider />
-      <div className="pl-4 h-80 overflow-y-scroll">
+      <div className="pl-4 h-32 xl:h-80 overflow-y-scroll">
         <FormGroup>{checkboxes}</FormGroup>
       </div>
       <Divider />
@@ -94,6 +94,7 @@ export default function GraphFilterCheckboxes({
           Clear Selection
         </Button>
       </div>
+      <Divider className="xl:hidden" />
     </div>
   );
 }

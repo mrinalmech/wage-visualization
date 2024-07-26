@@ -331,8 +331,8 @@ export default function Chart({
   };
 
   return (
-    <div className="grid grid-cols-5 gap-4 w-full">
-      <div className="col-span-4">
+    <div className="w-full flex">
+      <div className="flex-1">
         <LineChart
           width={800}
           height={chartHeight}
@@ -350,7 +350,7 @@ export default function Chart({
           {lines}
         </LineChart>
       </div>
-      <div style={{ maxHeight: chartHeight }} className="overflow-y-auto">
+      <div style={{ maxHeight: chartHeight }} className="overflow-y-auto w-48">
         {legendItems}
       </div>
     </div>
