@@ -4,6 +4,19 @@ I have also used [Typescript](https://www.typescriptlang.org/) for better type-s
 
 A live version is deployed on http://65.1.208.19:3000/
 
+## Running it locally
+
+[NodeJS](https://nodejs.org/en) should be installed beforehand.
+
+Run following commands to run the app:
+
+`npm install`
+
+`npm run build`
+
+`npm run start`
+
+
 ## Visualization library
 
 The visualization library used here is [recharts](https://recharts.org/en-US/).
