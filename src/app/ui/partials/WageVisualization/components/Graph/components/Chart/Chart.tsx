@@ -70,8 +70,8 @@ const processWageData = (
 };
 
 const BlankState = ({ height, width }: { height: number; width: number }) => (
-  <div className="grid grid-cols-5 gap-4 w-full">
-    <div className="col-span-4">
+  <div className="w-full flex flex-col lg:flex-row">
+    <div className="flex-1 flex justify-center sm:justify-start">
       <LineChart
         width={width}
         height={height}
@@ -91,6 +91,7 @@ const BlankState = ({ height, width }: { height: number; width: number }) => (
         />
       </LineChart>
     </div>
+    <div style={{ maxHeight: height }} className="w-full lg:w-48" />
   </div>
 );
 
