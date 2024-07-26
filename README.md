@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-I have also used [Typescript](https://www.typescriptlang.org/) for better type-safe code and Tailwind(https://tailwindcss.com/) for styling.
+I have also used [Typescript](https://www.typescriptlang.org/) for better type-safe code and [Tailwind](https://tailwindcss.com/) for styling.
 
 A live version is deployed on http://65.1.208.19:3000/
 
