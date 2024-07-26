@@ -8,7 +8,7 @@ A live version is deployed on http://65.1.208.19:3000/
 
 [NodeJS](https://nodejs.org/en) should be installed beforehand.
 
-Run following commands to run the app:
+Run following commands from the directory (after cloning the git repo locally) to run the app:
 
 `npm install`
 
